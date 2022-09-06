@@ -6,6 +6,7 @@ import pandas as pd
 directory="Bins/"
 bindict = {}
 i=0
+#loop through directory of bins
 for file in os.listdir(directory):
     valuelist=[]
     key=file
@@ -18,8 +19,7 @@ for file in os.listdir(directory):
                 line=line.replace("\n", "")
                 valuelist.append(line)
                 bindict[file]=valuelist
-#print(bindict)
+#turning dictionary into DF to merge with data from Salmon
 final = pd.DataFrame({'MaxBins': (bindict.keys()), 'Contig_Nodes': list(bindict.values())})
 final = final.explode(column='Contig_Nodes')
-#newfinal = final.drop_duplicates(subset=['Contig_Nodes'])
-final.to_csv('/Users/shayla/KelleyLab/BinnedBactAndArch.FASTA_SET1/out.csv')
+final.to_csv('/Users/shayla/KelleyLab/DictOut.csv')
