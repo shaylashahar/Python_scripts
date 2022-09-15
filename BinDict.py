@@ -8,11 +8,13 @@ bindict = {}
 i=0
 #loop through directory of bins
 for file in os.listdir(directory):
+    #set file name (bin) as key in dict
     valuelist=[]
     key=file
     bindict[key]=file
     with open("./Bins/" + file, 'r') as f:
         contents = f.readlines()
+        #read through each line and add node as value in dict
         for line in contents: 
             if line.startswith(">"):
                 line=line.replace(">", "")
